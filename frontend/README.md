@@ -1,29 +1,55 @@
-# Mail Tinder - Frontend
+# Mail Tinder Mobile - Application Tinder du Mail
 
-Application de type "Tinder du mail" développée avec Vue 3, Vite et Tailwind CSS pour le Hackaton MC2I.
+Application mobile-first de type "Tinder du mail" développée avec **Vue 3 + Vite + Tailwind CSS** pour le Hackaton MC2I.
 
-## Fonctionnalités
+## 📱 Preview
 
-- **Récupération des mails** : Connexion à l'API n8n pour récupérer les mails
-- **Classement automatique** : Les mails sont classés en 3 catégories (Important, Normal, Faible)
-- **Système de swipe** :
-  - ⬅️ Swipe gauche : Marquer comme lu
-  - ➡️ Swipe droite : Aller à la page de réponse
-  - ⬆️ Swipe haut : Réponse automatique par IA
-- **Génération de mails de test** : 50 mails de démo générés si l'API n8n n'est pas disponible
-- **Page de réponse** : Interface complète pour répondre aux mails avec bouton IA
-- **Filtrage par catégorie** : Navigation facile entre les différentes catégories
+![Mail Tinder Mobile](https://via.placeholder.com/400x800/ff4081/ffffff?text=Mail+Tinder+Mobile)
 
-## Prérequis
+## ✨ Fonctionnalités
 
-- Node.js 18+ 
+### Design Mobile
+- **Dégradé rose/orange** en arrière-plan
+- **Carte de mail centrée** avec photo de profil
+- **Badges de statistiques** en haut de l'écran
+- **Boutons d'action circulaires** (❌ Supprimer, 🤖 IA, ✉️ Répondre)
+- **Navigation entre mails** avec flèches
+
+### Gestion des Mails
+- **50 mails de test** générés automatiquement
+- **Classement automatique** en 3 catégories :
+  - ⭐ **IMPORTANT** (rouge) - Boss, famille, clients
+  - 📧 **NORMAL** (bleu) - Collègues, amis
+  - 🗑️ **FAIBLE** (gris) - Spam, démarchage
+
+### Actions
+| Bouton | Action |
+|--------|--------|
+| ❌ | Supprimer/Archiver le mail |
+| 🤖 | Générer une réponse IA automatique |
+| ✉️ | Répondre manuellement au mail |
+
+### Statistiques
+- **Boîte** : Nombre total de mails
+- **À répondre** : Mails nécessitant une réponse
+- **Envoyés** : Mails déjà traités
+
+### Mode Démo
+- **Données intégrées** : 50 mails de test générés
+- **Alert visible** : "Mode démo (données intégrées)"
+- **Prêt pour la démo** sans configuration
+
+## 🚀 Installation
+
+### Prérequis
+- Node.js 18+
 - npm ou yarn
 
-## Installation
+### Étapes
 
 ```bash
 # Se placer dans le dossier frontend
-cd frontend
+cd /c/_Code/hackatonMC2I/frontend
 
 # Installer les dépendances
 npm install
@@ -32,123 +58,110 @@ npm install
 npm run dev
 ```
 
-L'application sera disponible sur `http://localhost:5173`
+L'application sera disponible sur **http://localhost:5173**
 
-## Configuration
+## 📱 Utilisation Mobile
 
-### API n8n
+### sur téléphone
+1. Ouvrez le navigateur de votre téléphone
+2. Accédez à `http://[VOTRE_IP]:5173`
+3. Ajoutez à l'écran d'accueil pour une expérience PWA
 
-L'application se connecte par défaut à : `https://werenn.app.n8n.cloud/webhook-test`
+### Actions tactiles
+- **Glisser** : Navigation entre les mails
+- **Taper** : Boutons d'action
 
-Les endpoints utilisés sont :
-- `GET /mails` - Récupérer tous les mails
-- `GET /needs_reply` - Récupérer les mails nécessitant une réponse
-- `POST /action` - Envoyer une action (swipe)
+## 🔧 Configuration
 
-Pour modifier l'URL de l'API, éditer le fichier `src/services/api.js` :
+### Passer en mode connecté
 
+1. Modifiez le fichier `src/App.vue`
+2. Cherchez la ligne :
+   ```javascript
+   const demoMode = ref(true);
+   ```
+3. Changez pour :
+   ```javascript
+   const demoMode = ref(false);
+   ```
+4. Configurez l'URL de votre API n8n :
+   ```javascript
+   const API_BASE_URL = 'https://werenn.app.n8n.cloud/webhook-test';
+   ```
+
+### Personnaliser les mails de test
+
+Dans `src/App.vue`, modifiez les tableaux :
 ```javascript
-const API_BASE_URL = 'VOTRE_URL_N8N';
+const importantSenders = [...];
+const normalSenders = [...];
+const faibleSenders = [...];
 ```
 
-### Génération de mails de test
+### Personnaliser les couleurs
 
-Si l'API n8n n'est pas disponible, l'application génère automatiquement 50 mails de test avec :
-- 20% de mails Importants (boss, famille, clients)
-- 50% de mails Normaux (collègues, amis)
-- 30% de mails Faibles (spam, démarchage)
+Dans `tailwind.config.js` :
+```javascript
+export default {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#ff4081',
+        secondary: '#ff6b6b',
+      },
+    },
+  },
+};
+```
 
-## Structure du projet
+## 📁 Structure du Projet
 
 ```
 frontend/
 ├── public/
+│   └── favicon.svg
 ├── src/
-│   ├── assets/
-│   ├── components/
-│   │   └── MailCard.vue      # Composant de carte de mail avec swipe
-│   ├── pages/
-│   │   ├── HomePage.vue     # Page principale avec liste des mails
-│   │   └── ReplyPage.vue    # Page de réponse au mail
-│   ├── services/
-│   │   └── api.js           # Service de connexion à l'API n8n
-│   ├── App.vue              # Composant racine
+│   ├── App.vue              # Application principale
 │   ├── main.js              # Point d'entrée
-│   ├── router.js            # Configuration du routeur
-│   └── style.css            # Styles globaux avec Tailwind
+│   └── style.css            # Styles globaux + Tailwind
+├── .gitignore
+├── index.html
 ├── package.json
-├── vite.config.js
+├── postcss.config.js
 ├── tailwind.config.js
-└── postcss.config.js
+├── vite.config.js
+└── README.md
 ```
 
-## Utilisation
+## 🎯 Déploiement
 
-### Navigation
-
-- **Clavier** :
-  - ⬅️ : Marquer comme lu
-  - ➡️ : Aller à la page de réponse
-  - ⬆️ : Réponse IA automatique
-  - ⬇️ : Mail suivant
-
-- **Mobile/Tactile** :
-  - Glisser vers la gauche : Marquer comme lu
-  - Glisser vers la droite : Répondre
-  - Glisser vers le haut : Réponse IA
-
-### Filtrage
-
-Cliquez sur les badges en haut de l'écran pour filtrer par catégorie :
-- Tous
-- ⭐ Important
-- 📧 Normal
-- 🗑️ Faible
-
-## Personnalisation
-
-### Catégorisation automatique
-
-La catégorisation est basée sur l'expéditeur du mail. Pour modifier les règles, éditer `src/services/api.js` :
-
-```javascript
-const importantSenders = ['boss@entreprise.com', 'maman@famille.fr', ...];
-const normalSenders = ['collegue@entreprise.com', 'ami@hotmail.com', ...];
-const faibleSenders = ['spam@publicite.com', 'promo@boutique.fr', ...];
-```
-
-### Styles
-
-Les couleurs et styles peuvent être modifiés dans `tailwind.config.js` :
-
-```javascript
-colors: {
-  primary: '#3b82f6',
-  important: '#ef4444',
-  normal: '#3b82f6',
-  faible: '#6b7280',
-}
-```
-
-## Déploiement
-
+### Pour la démo
 ```bash
-# Construire pour la production
 npm run build
-
-# Prévisualiser la build
 npm run preview
 ```
 
-Les fichiers générés seront dans le dossier `dist/`.
+Les fichiers sont générés dans `/dist`
 
-## Technologies utilisées
+### Sur Netlify/Vercel
+1. Poussez le code sur GitHub
+2. Connectez votre compte Netlify/Vercel
+3. Sélectionnez le dépôt
+4. Déployez automatiquement
 
-- **Framework** : Vue 3
-- **Bundler** : Vite
-- **CSS** : Tailwind CSS
-- **API** : Connexion à n8n via fetch
+## 💡 Astuces
 
-## Contributeurs
+- **Pour une vraie PWA** : Ajoutez un `manifest.json`
+- **Pour des vraies données** : Connectez votre API n8n
+- **Pour plus de mails** : Augmentez le nombre dans `generateTestMails()`
+- **Pour changer les couleurs** : Modifiez le dégradé dans `style.css`
 
-Application développée pour le Hackaton MC2I.
+## 🤝 Contributeurs
+
+Application développée pour le **Hackaton MC2I**.
+
+Technologies : Vue 3, Vite, Tailwind CSS, n8n
+
+## 📄 Licence
+
+MIT

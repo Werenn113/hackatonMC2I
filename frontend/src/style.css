@@ -2,73 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .mail-card {
-    @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300;
-  }
-  
-  .mail-card-important {
-    @apply border-2 border-important;
-  }
-  
-  .mail-card-normal {
-    @apply border-2 border-normal;
-  }
-  
-  .mail-card-faible {
-    @apply border-2 border-faible opacity-70;
-  }
-  
-  .swipe-overlay {
-    @apply absolute inset-0 flex items-center justify-center text-white text-4xl font-bold opacity-0;
-  }
-  
-  .swipe-left-overlay {
-    @apply bg-green-500;
-  }
-  
-  .swipe-right-overlay {
-    @apply bg-blue-500;
-  }
-  
-  .swipe-up-overlay {
-    @apply bg-purple-500;
-  }
-  
-  .category-badge {
-    @apply px-3 py-1 rounded-full text-xs font-medium;
-  }
-  
-  .category-important {
-    @apply bg-important text-white;
-  }
-  
-  .category-normal {
-    @apply bg-normal text-white;
-  }
-  
-  .category-faible {
-    @apply bg-faible text-white;
-  }
+/* Background gradient */
+html, body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff4081 0%, #ff6b6b 50%, #ffa726 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
+/* Custom animations */
+@keyframes pulse {
+  0%, 100% {
     opacity: 1;
-    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.8;
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Touch action styles */
-.touch-action-none {
-  touch-action: none;
+/* Card shadow */
+.card-shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Button hover effect */
+.btn-hover {
+  transition: all 0.2s ease;
+}
+
+.btn-hover:hover {
+  transform: scale(1.05);
+}
+
+.btn-hover:active {
+  transform: scale(0.95);
 }

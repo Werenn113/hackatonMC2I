@@ -1,5 +1,5 @@
 {
-  "name": "mail-tinder-frontend",
+  "name": "mail-tinder-mobile",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -9,8 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
