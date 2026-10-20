@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .mail-card {
+    @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300;
+  }
+  
+  .mail-card-important {
+    @apply border-2 border-important;
+  }
+  
+  .mail-card-normal {
+    @apply border-2 border-normal;
+  }
+  
+  .mail-card-faible {
+    @apply border-2 border-faible opacity-70;
+  }
+  
+  .swipe-overlay {
+    @apply absolute inset-0 flex items-center justify-center text-white text-4xl font-bold opacity-0;
+  }
+  
+  .swipe-left-overlay {
+    @apply bg-green-500;
+  }
+  
+  .swipe-right-overlay {
+    @apply bg-blue-500;
+  }
+  
+  .swipe-up-overlay {
+    @apply bg-purple-500;
+  }
+  
+  .category-badge {
+    @apply px-3 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .category-important {
+    @apply bg-important text-white;
+  }
+  
+  .category-normal {
+    @apply bg-normal text-white;
+  }
+  
+  .category-faible {
+    @apply bg-faible text-white;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Touch action styles */
+.touch-action-none {
+  touch-action: none;
+}

@@ -1,24 +1,35 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
+# Dependencies
+node_modules/
 
-# Node dependencies
-node_modules
+# Build output
+dist/
+build/
 
 # Logs
-logs
 *.log
+npm-debug.log*
 
-# Misc
-.DS_Store
-.fleet
-.idea
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
 
-# Local env files
+# Environment files
 .env
-.env.*
-!.env.example
+.env.local
+.env.*.local
+
+# Testing
+coverage/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE
+*.sublime-workspace
+*.sublime-project
+
+# Vite
+vite.config.js.map
