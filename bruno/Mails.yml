@@ -1,0 +1,16 @@
+info:
+  name: Mails
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: https://werenn.app.n8n.cloud/webhook-test/mails
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

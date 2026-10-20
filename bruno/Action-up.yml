@@ -1,0 +1,23 @@
+info:
+  name: Action-up
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: https://werenn.app.n8n.cloud/webhook-test/action
+  body:
+    type: json
+    data: |-
+      {
+        "id": "4",
+        "action": "up"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
